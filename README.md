@@ -1,9 +1,9 @@
 ## Forker's short intro: 
 Purposes:
-    1) Many of the LLM available to the *oobabooga's textgen-webui* do not do very well at writing text that SD models 'understand'.
+- 1) Many of the LLM available to the *oobabooga's textgen-webui* do not do very well at writing text that SD models 'understand'.
 I propose a simple solution: Simply filter the text response after it is generated; remove common conversational words and feed that resultant string to the sd-engine. It is better at prompting sd now than I am myself. 
-    2) A solution to the many tokens taken up by images being represented in the chat history is to link to the resulting images; it is not ideal. (Maybe having the images show up in a pane parallel to the main chat pane would be ideal; the secondary pane could also access the chat-history and simply filter for the links and display the images.)
-    3) I suggest different default settings that I believe might have wide appeal; but really I think support for adjusting and saving default settings should be possible directly from the browser.
+- 2) A solution to the many tokens taken up by images being represented in the chat history is to link to the resulting images; it is not ideal. (Maybe having the images show up in a pane parallel to the main chat pane would be ideal; the secondary pane could also access the chat-history and simply filter for the links and display the images.)
+- 3) I suggest different default settings that I believe might have wide appeal; but really I think support for adjusting and saving default settings should be possible directly from the browser.
     
     My suggestions will be up soon, I just need to remove some fluff. 
 
