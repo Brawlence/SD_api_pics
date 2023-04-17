@@ -146,7 +146,7 @@ def get_SD_pictures(description):
             output_file = Path(f'extensions/sd_api_pictures/outputs/{variadic}.png')
             output_file.parent.mkdir(parents=True, exist_ok=True)
             image.save(output_file.as_posix())
-            visible_result = visible_result + f'<img src="/file/extensions/sd_api_pictures/outputs/{variadic}.png" alt="{description}" style="max-width: unset; max-height: unset;">\n'
+            visible_result = visible_result + f'[<a target="_blank" href="/file/extensions/sd_api_pictures/outputs/{variadic}.png">Attachment</a>]\n'
         else:
             # lower the resolution of received images for the chat, otherwise the log size gets out of control quickly with all the base64 values in visible history
             image.thumbnail((300, 300))
