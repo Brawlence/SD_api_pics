@@ -113,6 +113,9 @@ def input_modifier(string):
 
 # Get and save the Stable Diffusion-generated picture
 def get_SD_pictures(description):
+    
+    # filtering out conversational words
+    description = filter_out_conversational_words(description)
 
     global params
 
@@ -157,6 +160,39 @@ def get_SD_pictures(description):
     if params['manage_VRAM']: give_VRAM_priority('LLM')
     
     return visible_result
+
+
+# function filters out common conversational words from string
+# NOTE: the local array substring_to_remove should be customizable
+def filter_out_conversational_words(string):
+    # convert the string to lowercase for case-insensitive matching (sd models ignore capitalization anyway, as far as I know)
+    string = string.lower()
+    
+    # define the list of typical english substrings for removal
+    # NB. there are a lot of words that might be filtered depending on character, chatbot, and users purpose but I have kept this list to contain mostly words that seem to 'confuse' the SD models I know
+    substrings_to_remove = [" i'm ", " i'd ", " a ", " an ", " i ", " me ", " my ", " mine ", " you ", " your ", " they ", "they", "'re ", "their", " at ", " the ", " that's ", "this", " who",  " and ", " but ", " all ", " it's", " i've ", " it ", " in ", " to ", " there ", " there's ", " these ", " those " "where's ", " from ", " is ", " am ", " are ", " was ", " were ", " my ", " me ", " you " " will ", " be ", " can ", " could ", " has ", " or ", " that ", " photos", " pictures" , " of ", "okay" , " here", " go ", " done ", "danbooru", " wtf", " put ", " what ", " why ", " would ", "should ", " good ", " one ", " oh ", " yeah ", " now ", " tag ", " tags ", " tagged ", " tagged as ", " description ", " describe ", " also", "without", " while ", " goes ", "anyways", "because", " still ", " going ", " so ", " then ", " these ", " else ", " might ", "http", " let ", " try ", " let's ", "see ", " name ", " hello ", " do ", " where ", " represents ", " got ", " about ", " how ", " much "]
+    # define the list of special character substrings to remove
+    trailing_characters_to_remove = [ " - ","--",".", ", ,",",,"," , ",",,", "!", "?", ";", ":", ",,", "&", "(", ")", "<", ">", "/", "\\"]
+
+    # loop through each substring in the list and remove it from the string
+    for substring in substrings_to_remove: 
+        string = string.replace(substring, ", ")
+        string = string.replace(" " + substring.strip()+",", ", ")
+    
+    # removing resulting trailing characters
+    for substring in trailing_characters_to_remove:
+        string = string.replace(substring, "") 
+
+    # second loop through each substring in the list and remove it from the string. some substrings are pesky and need this special treatment.
+    for substring in substrings_to_remove: 
+        string = string.replace(substring, ", ")
+        string = string.replace(" " + substring.strip()+",", " ")   
+    
+    string = string.replace(" , ", " ")
+    string = string.replace("  ", " ")
+
+    # return the filtered string
+    return string
 
 # TODO: how do I make the UI history ignore the resulting pictures (I don't want HTML to appear in history)
 # and replace it with 'text' for the purposes of logging?
