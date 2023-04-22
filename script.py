@@ -15,7 +15,7 @@ from PIL import Image
 torch._C._jit_set_profiling_mode(False)
 
 
-sd_models = [] # list of models reported by SD-server (fetched in fetch-models)
+sd_models = [] # list of models reported by SD-server (fetched in fetch_models_on_sd_server)
 sd_model_current = [""] # string name of currently loaded SD-model
 
 # parameters which can be customized in settings.json of webui
