@@ -347,7 +347,7 @@ def ui():
                     width = gr.Slider(256, 768, value=params['width'], step=64, label='Width')
                     height = gr.Slider(256, 768, value=params['height'], step=64, label='Height')
                 with gr.Column():
-                    model_dropdown = gr.Dropdown(sd_models,value=sd_model_current,label="Stable Diffusion Model",type="value")
+                    model_dropdown = gr.Dropdown(sd_models,value=sd_model_current[0],label="Stable Diffusion Model",type="value")
             with gr.Row():
                 steps = gr.Number(label="Steps:", value=params['steps'])
                 seed = gr.Number(label="Seed:", value=params['seed'])
