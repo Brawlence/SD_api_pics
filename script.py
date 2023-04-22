@@ -14,6 +14,7 @@ from PIL import Image
 
 torch._C._jit_set_profiling_mode(False)
 
+
 sd_models = [] # list of models reported by SD-server (fetched in fetch-models)
 sd_model_current = [""] # string name of currently loaded SD-model
 
@@ -149,6 +150,7 @@ def get_SD_pictures(description):
 
             with open(output_file.as_posix(), 'wb') as f:
                 f.write(img_data)
+
             visible_result = visible_result + f'[<a target="_blank" href="/file/extensions/sd_api_pictures/outputs/{variadic}.png">Attachment</a>]\n'
         else:
             image = Image.open(io.BytesIO(base64.b64decode(img_str.split(",", 1)[0])))
@@ -308,6 +310,7 @@ def fetch_current_model_on_sd_server():
     if payload["sd_model_checkpoint"]:
         sd_model_current = [payload["sd_model_checkpoint"]]
 
+
 # Loads model on SD-server
 def load_sd_model_remote(name):
 
@@ -316,7 +319,6 @@ def load_sd_model_remote(name):
     }
 
     response = requests.post(url=f'{params["address"]}/sdapi/v1/options', json=payload)
-
 
 # Initialization of list of sd-models and fetching the loaded model.
 fetch_models_on_sd_server()
@@ -346,6 +348,7 @@ def ui():
                 with gr.Column():
                     width = gr.Slider(256, 768, value=params['width'], step=64, label='Width')
                     height = gr.Slider(256, 768, value=params['height'], step=64, label='Height')
+
                 with gr.Column():
                     model_dropdown = gr.Dropdown(sd_models,value=sd_model_current[0],label="Stable Diffusion Model",type="value")
             with gr.Row():
