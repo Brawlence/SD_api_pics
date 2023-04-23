@@ -16,7 +16,7 @@ torch._C._jit_set_profiling_mode(False)
 
 
 sd_models = [] # list of models reported by SD-server (fetched in fetch_models_on_sd_server)
-sd_model_current = [""] # string name of currently loaded SD-model
+
 
 # parameters which can be customized in settings.json of webui
 params = {
@@ -302,10 +302,10 @@ def fetch_models_on_sd_server():
 def fetch_current_model_on_sd_server():
     response = requests.get(url=f'{params["address"]}/sdapi/v1/options')
     response.raise_for_status()
-    payload = response.json()
+    response_json = response.json()
 
-    if payload["sd_model_checkpoint"]:
-        sd_model_current = [payload["sd_model_checkpoint"]]
+    if response_json["sd_model_checkpoint"]:
+        params['SD_model'] = response_json["sd_model_checkpoint"]
 
 
 # Loads model on SD-server
@@ -314,6 +314,8 @@ def load_sd_model_remote(name):
     payload = {
         "sd_model_checkpoint" : name
     }
+
+    params['SD_model'] = name
 
     response = requests.post(url=f'{params["address"]}/sdapi/v1/options', json=payload)
 
@@ -347,9 +349,9 @@ def ui():
                 with gr.Column():
                     sampler_name = gr.Textbox(placeholder=params['sampler_name'], value=params['sampler_name'], label='Sampling method', elem_id="sampler_box")
                     steps = gr.Slider(1, 150, value=params['steps'], step=1, label="Sampling steps")
-            
+            with gr.Row():
                 with gr.Column():
-                    model_dropdown = gr.Dropdown(sd_models,value=sd_model_current[0],label="Stable Diffusion Model",type="value")
+                    model_dropdown = gr.Dropdown(sd_models,value=params['SD_model'],label="Stable Diffusion Model",type="value")
             with gr.Row():
                 seed = gr.Number(label="Seed", value=params['seed'], elem_id="seed_box")
                 cfg_scale = gr.Number(label="CFG Scale", value=params['cfg_scale'], elem_id="cfg_box")
