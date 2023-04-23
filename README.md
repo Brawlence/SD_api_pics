@@ -20,7 +20,10 @@ Load it in the `--chat` mode with `--extension sd_api_pictures` alongside `send_
 Consider the version included with [oobabooga's repository](https://github.com/oobabooga/text-generation-webui/tree/main/extensions/sd_api_pictures) to be STABLE, experimental developments and untested features are pushed in [Brawlence/SD_api_pics](https://github.com/Brawlence/SD_api_pics)
 
 Lastest change:  
-1.1.0 → 1.1.1 Fixed not having Auto1111's metadata in received images
+1.1.1 → 1.2.0 @GuizzyQC 's fix for init mode, addition of HR_fix with relevant settings; [UI refinements](https://github.com/oobabooga/text-generation-webui/pull/1400)  
+1.1.0 → 1.1.1 Fixed not having Auto1111's metadata in received images  
+1.0.0 → 1.1.0 [Lots of new features and fixes](https://github.com/oobabooga/text-generation-webui/pull/596#issuecomment-1487585871); introduction of Connection check & VRAM shuffler
+-.-.- → 1.0.0 [Initial reliase](https://github.com/oobabooga/text-generation-webui/pull/309)  
 
 ## Details
 
