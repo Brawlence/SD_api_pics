@@ -33,7 +33,7 @@ params = {
     'seed': -1,
     'sampler_name': 'DDIM',
     'steps': 32,
-    'cfg_scale': 7
+    'cfg_scale': 7 
 }
 
 
@@ -196,17 +196,6 @@ def filter_out_conversational_words(string):
     # return the filtered string
     return string
 
-def remove_first_word(string, word_to_remove):
-    # split the string into words
-    words = string.split()
-
-    # check if the first word matches the word to remove
-    if words[0].lower() == word_to_remove.lower():
-        # if it matches, remove it from the list of words
-        words.pop(0)
-
-    # combine the remaining words into a new string and return it
-    return " ".join(words)
 
 # TODO: how do I make the UI history ignore the resulting pictures (I don't want HTML to appear in history)
 # and replace it with 'text' for the purposes of logging?
