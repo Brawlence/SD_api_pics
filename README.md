@@ -18,6 +18,7 @@ An extension to [oobabooga's textgen-webui](https://github.com/oobabooga/text-ge
 > experimental developments and untested features are to be pushed in [Brawlence/SD_api_pics](https://github.com/Brawlence/SD_api_pics)
 
 Lastest changes:  
+1.2.0 → 1.2.1 Implementation of recently added `state_modifier(state)` function to override the streaming parameter while generating picture response
 1.1.1 → 1.2.0 @GuizzyQC 's fix for mode on load, addition of `Hires fix` with relevant settings; [UI refinements](https://github.com/oobabooga/text-generation-webui/pull/1400)  
 1.1.0 → 1.1.1 Fixed omitting Auto1111's metadata in received images  
 1.0.0 → 1.1.0 [Lots of new features and fixes](https://github.com/oobabooga/text-generation-webui/pull/596#issuecomment-1487585871); introduction of Connection check & VRAM shuffler  
